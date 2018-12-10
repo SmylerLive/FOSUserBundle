@@ -12,6 +12,7 @@
 namespace FOS\UserBundle\EventListener;
 
 use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Event\FormRegistrationSuccessEvent;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Mailer\MailerInterface;
 use FOS\UserBundle\Util\TokenGeneratorInterface;
@@ -56,8 +57,12 @@ class EmailConfirmationListener implements EventSubscriberInterface
     /**
      * @param FormEvent $event
      */
-    public function onRegistrationSuccess(FormEvent $event)
+    public function onRegistrationSuccess(FormRegistrationSuccessEvent $event)
     {
+        if (!$event->isConfirmationRequired()) {
+            return;
+        }
+
         /** @var $user \FOS\UserBundle\Model\UserInterface */
         $user = $event->getForm()->getData();
 

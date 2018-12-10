@@ -13,6 +13,7 @@ namespace FOS\UserBundle\Controller;
 
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Event\FormRegistrationSuccessEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
@@ -72,7 +73,7 @@ class RegistrationController extends Controller
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                $event = new FormEvent($form, $request);
+                $event = new FormRegistrationSuccessEvent($form, $request);
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $this->userManager->updateUser($user);

@@ -147,7 +147,7 @@ final class FOSUserEvents
      *
      * This event allows you to set the response instead of using the default one.
      *
-     * @Event("FOS\UserBundle\Event\FormEvent")
+     * @Event("FOS\UserBundle\Event\FormRegistrationSuccessEvent")
      */
     const REGISTRATION_SUCCESS = 'fos_user.registration.success';
 
