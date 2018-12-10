@@ -71,8 +71,8 @@ class RegistrationController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
+        if ($request->isMethod('POST')) {
+            if ($form->isSubmitted() && $form->isValid()) {
                 $event = new FormRegistrationSuccessEvent($form, $request);
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
