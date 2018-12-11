@@ -236,6 +236,16 @@ final class FOSUserEvents
     const RESETTING_RESET_COMPLETED = 'fos_user.resetting.reset.completed';
 
     /**
+     * The RESETTING_RESET_FAILURE event occurs if the suubmitted request is invalid in the resetting
+     * process.
+     *
+     * This event allows you to access the response which will be sent.
+     *
+     * @Event("FOS\UserBundle\Event\FormEvent")
+     */
+    const RESETTING_RESET_FAILURE = 'fos_user.resetting.reset.failure';
+
+    /**
      * The SECURITY_IMPLICIT_LOGIN event occurs when the user is logged in programmatically.
      *
      * This event allows you to access the response which will be sent.
