@@ -276,6 +276,16 @@ final class FOSUserEvents
     const RESETTING_SEND_EMAIL_COMPLETED = 'fos_user.resetting.send_email.completed';
 
     /**
+     * The RESETTING_CHECK_EMAIL event occurs before the user is invited to check its email provider
+     *
+     * This event allows you to set the response to bypass the the redirection to the check email page
+     * The event listener method receives a FOS\UserBundle\Event\GetResponseUserEvent instance.
+     *
+     * @Event("FOS\UserBundle\Event\GetResponseNullableUserEvent")
+     */
+    const RESETTING_CHECK_EMAIL = 'fos_user.resetting.check_email';
+
+    /**
      * The USER_CREATED event occurs when the user is created with UserManipulator.
      *
      * This event allows you to access the created user and to add some behaviour after the creation.
