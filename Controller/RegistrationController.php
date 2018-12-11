@@ -14,6 +14,7 @@ namespace FOS\UserBundle\Controller;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\FormRegistrationSuccessEvent;
+use FOS\UserBundle\Event\GetResponseNullableUserEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
@@ -141,7 +142,13 @@ class RegistrationController extends Controller
         $user = $userManager->findUserByConfirmationToken($token);
 
         if (null === $user) {
-            return new RedirectResponse($this->container->get('router')->generate('fos_user_security_login'));
+            $event = new GetResponseNullableUserEvent($user, $request);
+            $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRM_FAILURE, $event);
+
+            if (null === $response = $event->getResponse()) {
+                $response = new RedirectResponse($this->generateUrl('fos_user_security_login'));
+            }
+            return $response;
         }
 
         $user->setConfirmationToken(null);

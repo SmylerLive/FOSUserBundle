@@ -189,6 +189,16 @@ final class FOSUserEvents
     const REGISTRATION_CONFIRMED = 'fos_user.registration.confirmed';
 
     /**
+     * The REGISTRATION_CONFIRM_FAILURE event occurs when an user try to confirm its email and the
+     * confirmation tokens does not match
+     *
+     * This event allows you to override the response that will be sent at this moment
+     *
+     * @Event("FOS\UserBundle\Event\GetResponseNullableUserEvent")
+     */
+    const REGISTRATION_CONFIRM_FAILURE = 'fos_user.registration.confirm_failure';
+
+    /**
      * The RESETTING_RESET_REQUEST event occurs when a user requests a password reset of the account.
      *
      * This event allows you to check if a user is locked out before requesting a password.
