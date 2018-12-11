@@ -213,7 +213,7 @@ final class FOSUserEvents
      *
      * This event allows you to set the response to bypass the processing.
      *
-     * @Event("FOS\UserBundle\Event\GetResponseUserEvent")
+     * @Event("FOS\UserBundle\Event\GetResponseNullableUserEvent")
      */
     const RESETTING_RESET_INITIALIZE = 'fos_user.resetting.reset.initialize';
 
