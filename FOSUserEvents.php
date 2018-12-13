@@ -147,7 +147,7 @@ final class FOSUserEvents
      *
      * This event allows you to set the response instead of using the default one.
      *
-     * @Event("FOS\UserBundle\Event\FormEvent")
+     * @Event("FOS\UserBundle\Event\FormRegistrationSuccessEvent")
      */
     const REGISTRATION_SUCCESS = 'fos_user.registration.success';
 
@@ -189,6 +189,16 @@ final class FOSUserEvents
     const REGISTRATION_CONFIRMED = 'fos_user.registration.confirmed';
 
     /**
+     * The REGISTRATION_CONFIRM_FAILURE event occurs when an user try to confirm its email and the
+     * confirmation tokens does not match
+     *
+     * This event allows you to override the response that will be sent at this moment
+     *
+     * @Event("FOS\UserBundle\Event\GetResponseNullableUserEvent")
+     */
+    const REGISTRATION_CONFIRM_FAILURE = 'fos_user.registration.confirm_failure';
+
+    /**
      * The RESETTING_RESET_REQUEST event occurs when a user requests a password reset of the account.
      *
      * This event allows you to check if a user is locked out before requesting a password.
@@ -203,7 +213,7 @@ final class FOSUserEvents
      *
      * This event allows you to set the response to bypass the processing.
      *
-     * @Event("FOS\UserBundle\Event\GetResponseUserEvent")
+     * @Event("FOS\UserBundle\Event\GetResponseNullableUserEvent")
      */
     const RESETTING_RESET_INITIALIZE = 'fos_user.resetting.reset.initialize';
 
@@ -224,6 +234,16 @@ final class FOSUserEvents
      * @Event("FOS\UserBundle\Event\FilterUserResponseEvent")
      */
     const RESETTING_RESET_COMPLETED = 'fos_user.resetting.reset.completed';
+
+    /**
+     * The RESETTING_RESET_FAILURE event occurs if the suubmitted request is invalid in the resetting
+     * process.
+     *
+     * This event allows you to access the response which will be sent.
+     *
+     * @Event("FOS\UserBundle\Event\FormEvent")
+     */
+    const RESETTING_RESET_FAILURE = 'fos_user.resetting.reset.failure';
 
     /**
      * The SECURITY_IMPLICIT_LOGIN event occurs when the user is logged in programmatically.
@@ -264,6 +284,16 @@ final class FOSUserEvents
      * @Event("FOS\UserBundle\Event\GetResponseUserEvent")
      */
     const RESETTING_SEND_EMAIL_COMPLETED = 'fos_user.resetting.send_email.completed';
+
+    /**
+     * The RESETTING_CHECK_EMAIL event occurs before the user is invited to check its email provider
+     *
+     * This event allows you to set the response to bypass the the redirection to the check email page
+     * The event listener method receives a FOS\UserBundle\Event\GetResponseUserEvent instance.
+     *
+     * @Event("FOS\UserBundle\Event\GetResponseNullableUserEvent")
+     */
+    const RESETTING_CHECK_EMAIL = 'fos_user.resetting.check_email';
 
     /**
      * The USER_CREATED event occurs when the user is created with UserManipulator.
