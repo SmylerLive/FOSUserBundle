@@ -139,6 +139,14 @@ class RegistrationController extends Controller
     {
         $userManager = $this->userManager;
 
+        // todo: Create an event without user
+        $event = new GetResponseNullableUserEvent(null, $request);
+        $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRM_INITIALIZE, $event);
+
+        if (null !== $event->getResponse()) {
+            return $event->getResponse();
+        }
+
         $user = $userManager->findUserByConfirmationToken($token);
 
         if (null === $user) {

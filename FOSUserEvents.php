@@ -171,6 +171,15 @@ final class FOSUserEvents
     const REGISTRATION_COMPLETED = 'fos_user.registration.completed';
 
     /**
+     * The REGISTRATION_CONFIRM_INITIALIZE event occurs when the registration confirm process is initialized.
+     *
+     * This event allows you to access the request and override the response to bypass the confirmation
+     *
+     * @Event("FOS\UserBundle\Event\GetResponseNullableUserEvent")
+     */
+    const REGISTRATION_CONFIRM_INITIALIZE = 'fos_user.registration.confirm_initialize';
+
+    /**
      * The REGISTRATION_CONFIRM event occurs just before confirming the account.
      *
      * This event allows you to access the user which will be confirmed.
